@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<persistence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+ version="2.0" xmlns="http://java.sun.com/xml/ns/persistence">
+ 
+  <persistence-unit name="persistencia" transaction-type="RESOURCE_LOCAL">
+ 	
+ 	<class>org.gradle.entities.Bodega</class>
+ 	<class>org.gradle.entities.Categoria</class>
+ 	<class>org.gradle.entities.Director</class>
+ 	<class>org.gradle.Distribuidor</class>
+ 	<class>org.gradle.entities.Formato</class>
+ 	<class>org.gradle.entities.Pelicula</class>
+ 	<class>org.gradle.entities.Personaje</class>
+ 	<class>org.gradle.entities.Sucursal</class> 
+
+    <properties>
+        <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
+        <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/hibernatedb" />
+        <property name="hibernate.connection.username" value="root" />
+        <property name="hibernate.connection.password" value="1234"/>
+        
+        <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
+        <property name="hibernate.hbm2ddl.auto" value="create" />
+       
+    </properties>
+  </persistence-unit>
+</persistence>
+
