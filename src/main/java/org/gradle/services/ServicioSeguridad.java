@@ -27,30 +27,6 @@ public class ServicioSeguridad {
 	EntityManagerFactory emf;
 	EntityManager manager;
 	
-
-	@GET
-	@Path("/")
-	public String inicio(){
-		return  "Hola Mundo";
-	}
-	
-	@GET
-    @Path("/hello1")
-    @Produces(MediaType.TEXT_PLAIN)
-    public String sayhello2() {
-		emf = Persistence.createEntityManagerFactory("persistencia");
-		manager = emf.createEntityManager();
-		
-		Bodega bodega = new Bodega();
-		bodega.setNombre("Nombre");
-		bodega.addPelicula(new Pelicula("Pelicula 1"));
-		
-		manager.getTransaction().begin();
-		manager.persist(bodega);
-		manager.getTransaction().commit();
-		return "YES";
-	}
-	
 	@POST
     @Path("/registro/{usuario}/{pass}")
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -73,8 +49,28 @@ public class ServicioSeguridad {
 			manager.getTransaction().commit();
 			return new Respuesta();
 		}
+	}
+	
+	@POST
+    @Path("/login/{usuario}/{pass}")
+	@Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Respuesta login(@PathParam("usuario") String usuario,
+    					   @PathParam("pass") String pass) throws SQLException {
+		emf = Persistence.createEntityManagerFactory("persistencia");
+		manager = emf.createEntityManager();
+		manager.getTransaction().begin();
 		
-			
+		//validacion exista el usuario con su contraseña
+		Query query = manager.createQuery("FROM Usuario WHERE usuario =:usuario and contrasena =:pass");
+		query.setParameter("usuario", usuario);
+		query.setParameter("pass", pass);
+		
+		if (query.getResultList().size() > 0 ){
+			return new Respuesta();
+		}else{
+			return new Respuesta("fail");
+		}
 	}
 	
 }

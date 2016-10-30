@@ -12,7 +12,7 @@ import static org.junit.Assert.*;
 import org.junit.FixMethodOrder;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class TestSelenium {
+public class TestRegistro {
 
 	@Test
 	public void AcontraseniasNoConcuerdan(){

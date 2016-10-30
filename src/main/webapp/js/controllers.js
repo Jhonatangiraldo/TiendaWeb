@@ -3,12 +3,36 @@
 
   app.controller('Login',['$http', function($http){
     var login = this;
-    login.numero1 = "Hola Mundo Login";
+    login.usuario = '';
+    login.pass = '';
+
+    login.ingresar = function(){
+      if (login.usuario == '' || login.pass == ''){
+        alert("Llene todos los campos");
+      }else{
+        var req = {
+             method: 'POST',
+             url: 'http://localhost:8090/Tienda/rest/security_service/login/'
+                  + login.usuario + "/" + login.pass,
+             headers: {
+               'Content-Type': undefined
+             }
+        };
+          console.log(req.url);
+            $http(req).then(function(response){
+              if (response.data.respuesta == "Ok"){
+                alert("Bienvenido");
+                location.href = "http://localhost:8090/Tienda/views/main.html";
+              }else{
+                alert("Usuario y/o contraseña incorrecto");
+              }
+            });
+      }
+    }
   }]);
 
   app.controller('Main',['$http', function($http){
     var login = this;
-    login.numero1 = "Hola Mundo Main";
   }]);
 
   app.controller('Movies',['$http', function($http){
@@ -46,7 +70,6 @@
               }
             });
       }
-
     }
   }]);
 
