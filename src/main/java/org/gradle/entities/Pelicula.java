@@ -6,6 +6,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -27,8 +29,8 @@ public class Pelicula {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Pelicula(Long id_pelicula) {
-		this.id_pelicula = id_pelicula;
+	public Pelicula(String nombre) {
+		this.nombre = nombre;
 	}
 
 	public Pelicula(Long id_pelicula, Bodega bodega, Sucursal sucursal, Director director, 
@@ -44,6 +46,7 @@ public class Pelicula {
 
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_pelicula")
 	private Long id_pelicula;
 	
@@ -82,7 +85,7 @@ public class Pelicula {
 	private DistribuidorEstudio distribuidorEstudio;
 	
 	@Column(name = "nombre")
-	private Long nombre;
+	private String nombre;
 	
 	@Column(name = "costoHora")
 	private Long costoHora;
@@ -91,11 +94,11 @@ public class Pelicula {
 	private String imagen; 
 	
 	@XmlElement
-	public Long getNombre() {
+	public String getNombre() {
 		return nombre;
 	}
 
-	public void setNombre(Long nombre) {
+	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
 	

@@ -3,6 +3,8 @@ package org.gradle.entities;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -24,6 +26,7 @@ public class Personaje {
 	}
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id_director")
 	private Long id_director;
 	
@@ -33,14 +36,14 @@ public class Personaje {
 	private Pelicula pelicula;
 	
 	@Column(name = "nombre")
-	private Long nombre;
+	private String nombre;
 	
 	@XmlElement
-	public Long getNombre() {
+	public String getNombre() {
 		return nombre;
 	}
 
-	public void setNombre(Long nombre) {
+	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
 

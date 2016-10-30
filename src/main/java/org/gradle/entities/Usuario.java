@@ -2,6 +2,8 @@ package org.gradle.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -16,11 +18,13 @@ public class Usuario {
 	public Usuario() {
 	}
 	
-	public Usuario(Long id_usuario) {
-		this.id_usuario = id_usuario;
+	public Usuario(String usuario, String contrasena) {
+		this.usuario = usuario;
+		this.contrasena = contrasena;	
 	}
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id_usuario")
 	private Long id_usuario;
 	

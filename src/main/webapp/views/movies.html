@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+ <html ng-app="TiendaPeliculas">
+   <head>
+     <meta charset="utf-8">
+     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+     <link type="text/css" rel="stylesheet" href="../css/materialize.min.css"  media="screen,projection"/>
+     <link type="text/css" rel="stylesheet" href="../css/app.css"  media="screen,projection"/>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
+
+     <script type="text/javascript" src="../js/angular.js"></script>
+     <script type="text/javascript" src="../js/controllers.js"></script>
+	  <script>
+         $(document).ready(function() {
+         $('select').material_select();
+      });
+    </script>
+   </head>
+   <body ng-controller="Movies as movies">
+     {{movies.numero1}}
+     <center><img src="../images/logo.png"><img src="../images/cinta.png"></center>
+     <br />
+     <br />
+     <span id="textoMovies" class="white-text">
+       Ingrese el nombre de la película o del actor.
+     </span>
+     <div class="row">
+         <form class="col s12">
+            <div id="selectMain" class="row">
+               <label>Categorías</label>
+               <select>
+                  <option value="" disabled selected>Seleccione Categoría</option>
+                  <option value="1">Actor</option>
+                  <option value="2">Director</option>
+                  <option value="3">Género</option>
+                  <option value="4">Bodega</option>
+                  <option value="5">Sucursal</option>
+                  <option value="6">Formato</option>
+                  <option value="7">Distribuidor</option>
+               </select>
+            </div>
+          </form>
+        </div>
+        <span id="textoMovies" class="white-text">
+          Ingrese el criterio de búsqueda:
+        </span>
+     <div id="buscador" class="row">
+     <nav>
+       <div class="nav-wrapper">
+         <form>
+           <div class="input-field">
+             <input id="search" type="search" required>
+             <label for="search"><i class="material-icons">search</i></label>
+             <i class="material-icons">close</i>
+           </div>
+         </form>
+       </div>
+     </nav>
+   </div>
+   <table id="contenedorPeliculas">
+   <div>
+     <tr>
+     <td><div id="pelicula1" class="zoom"><a href="#openModal"><img src="../images/peliculas/pel1.jpeg"></a></div></td>
+     <td><div id="pelicula2" class="zoom"><a href="#openModal"><img src="../images/peliculas/pel1.jpeg"></a></div></td>
+     <td><div id="pelicula3" class="zoom"><a href="#openModal"><img src="../images/peliculas/pel1.jpeg"></a></div></td>
+     <td><div id="pelicula4" class="zoom"><a href="#openModal"><img src="../images/peliculas/pel1.jpeg"></a></div></td>
+     </tr>
+     <tr>
+       <td><div id="pelicula5" class="zoom"><a href="#openModal"><img src="../images/peliculas/pel1.jpeg"></a></div></td>
+       <td><div id="pelicula6" class="zoom"><a href="#openModal"><img src="../images/peliculas/pel1.jpeg"></a></div></td>
+       <td><div id="pelicula7" class="zoom"><a href="#openModal"><img src="../images/peliculas/pel1.jpeg"></a></div></td>
+       <td><div id="pelicula8" class="zoom"><a href="#openModal"><img src="../images/peliculas/pel1.jpeg"></a></div></td>
+    </tr>
+   </div>
+  </table>
+
+  <div id="openModal" class="modalDialog">
+      <div><a href="#close" title="Close" class="close">X</a>
+          <center><h1 id="textoModal">Descripción</h1></center>
+          <p>Gamer es una película de 2009 escrita
+            y dirigida por Mark Neveldine y Brian Taylor y protagonizada por Gerard Butler y Michael C. Hall.
+            Estrenada el 4 de septiembre en Estados Unidos y España, la película está basada en los videojuegos
+            de disparos en tercera persona.</p>
+            <p>Protagonistas:
+              Gerard Butler
+              Michael C. Hall
+              Amber Valletta
+              Logan Lerman
+              Terry Crews
+              Ludacris
+              Kyra Sedgwick</p> <!-- Asignar variables con descripción -->
+          <center><a href="#openModal2" id="btnRegistrar" class="waves-effect waves-light btn"><i class="material-icons left">cloud</i>Registrar película</a></center>
+      </div>
+  </div>
+
+  <div id="openModal2" class="modalDialog">
+      <div><a href="#close" title="Close" class="close">X</a>
+          <center><h2 id="textoModal">Registro</h2></center>
+          <p>Número de películas a alquilar:<input type="number" name="numero"></p>
+          <p>Fecha de inicio:<input type="date" name="fecha"></p>
+          <p>Fecha de fin:<input type="date" name="fechaFin"></p>
+          <center><id="btnRegistrar" class="waves-effect waves-light btn"><i class="material-icons left">cloud</i>Registrar película</a></center>
+      </div>
+  </div>
+  <footer class="page-footer">
+      <div class="container">
+        <div class="row">
+          <div class="col l6 s12">
+            <h5 class="white-text">PixHD Movies</h5>
+            <p class="grey-text text-lighten-4">Puedes alquilar tus películas favoritas con un par de clics!</p>
+          </div>
+          <div class="col l4 offset-l2 s12">
+            <h5 class="white-text">Anímate</h5>
+            <ul>
+              <li><a class="grey-text text-lighten-3" href="#!">Redes Sociales(Muy Pronto)</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer-copyright">
+        <div class="container">
+        © 2016 PixHD Movies
+        <a class="grey-text text-lighten-4 right" href="#!"></a>
+        </div>
+      </div>
+    </footer>
+ </body>
+</html>

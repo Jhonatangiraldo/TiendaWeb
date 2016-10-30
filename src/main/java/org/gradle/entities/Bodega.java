@@ -6,6 +6,8 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -19,7 +21,9 @@ import com.sun.xml.internal.txw2.annotation.XmlElement;
 public class Bodega {
 	
 	public Bodega() {
-		// TODO Auto-generated constructor stub
+		/*
+		 * Constructor empty
+		 */
 	}
 	
 	public Bodega(Long id_bodega) {
@@ -27,6 +31,7 @@ public class Bodega {
 	}
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_bodega")
 	private Long id_bodega;
 	
@@ -34,14 +39,14 @@ public class Bodega {
 	private List<Pelicula> peliculas = new ArrayList<>();
 	
 	@Column(name = "nombre")
-	private Long nombre;
+	private String nombre;
 	
 	@XmlElement
-	public Long getNombre() {
+	public String getNombre() {
 		return nombre;
 	}
 
-	public void setNombre(Long nombre) {
+	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
 

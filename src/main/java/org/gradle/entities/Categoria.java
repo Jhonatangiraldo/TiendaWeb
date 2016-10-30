@@ -5,6 +5,8 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -23,6 +25,7 @@ public class Categoria {
 	}
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id_categoria")
 	private Long id_categoria;
 	
@@ -30,14 +33,14 @@ public class Categoria {
 	private List<Pelicula> peliculas;
 	
 	@Column(name = "nombre")
-	private Long nombre;
+	private String nombre;
 	
 	@XmlElement
-	public Long getNombre() {
+	public String getNombre() {
 		return nombre;
 	}
 
-	public void setNombre(Long nombre) {
+	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
 
