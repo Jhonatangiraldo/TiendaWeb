@@ -32,12 +32,44 @@
   }]);
 
   app.controller('Main',['$http', function($http){
-    var login = this;
+    var main = this;
   }]);
 
   app.controller('Movies',['$http', function($http){
-    var login = this;
-    login.numero1 = "Hola Mundo Movies";
+    var movies = this;
+    movies.filtro = 'nombrePelicula';
+    movies.texto = '';
+    movies.peliculas = '';
+    movies.peliculaAlquilar = '';
+    movies.inicio = '';
+    movies.fin = '';
+    movies.numero = 0;
+
+    movies.alquilar = function(pelicula_id){
+      movies.peliculaAlquilar = pelicula_id;
+    }
+
+    var req = { method: 'POST', url: 'http://localhost:8090/Tienda/rest/peliculas/peliculas',
+                headers: {'Content-Type': undefined }
+    };
+        $http(req).then(function(response){
+            console.log(response.data);
+            movies.peliculas = response.data;
+        });
+
+
+    movies.busqueda = function(){
+      var req2 = { method: 'POST', url: 'http://localhost:8090/Tienda/rest/peliculas/pelicula/'
+                   + movies.filtro + '/' + movies.texto,
+                  headers: {'Content-Type': undefined }
+       };
+      console.log(req2.url);
+        $http(req2).then(function(response){
+            console.log(response.data);
+            movies.peliculas = response.data;
+        });
+    }
+
   }]);
 
   app.controller('SignUp',['$http', function($http){

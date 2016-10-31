@@ -139,3 +139,11 @@ body{
 .close:hover {
     background: #00d9ff;
 }
+
+img{
+  width: 250px;
+  height: 250px;
+}
+.selectClass {
+   font-size: 35px;
+}​

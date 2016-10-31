@@ -18,7 +18,6 @@
     </script>
    </head>
    <body ng-controller="Movies as movies">
-     {{movies.numero1}}
      <center><img src="../images/logo.png"><img src="../images/cinta.png"></center>
      <br />
      <br />
@@ -29,15 +28,14 @@
          <form class="col s12">
             <div id="selectMain" class="row">
                <label>Categorías</label>
-               <select>
-                  <option value="" disabled selected>Seleccione Categoría</option>
-                  <option value="1">Actor</option>
-                  <option value="2">Director</option>
-                  <option value="3">Género</option>
-                  <option value="4">Bodega</option>
-                  <option value="5">Sucursal</option>
-                  <option value="6">Formato</option>
-                  <option value="7">Distribuidor</option>
+               <select ng-model="movies.filtro" class="selectClass">
+                  <option value="nombrePelicula">Nombre Peliculaa</option>
+                  <option value="actor">Actor</option>
+                  <option value="director">Director</option>
+                  <option value="genero">Género</option>
+                  <option value="bodega">Bodega</option>
+                  <option value="formato">Formato</option>
+                  <option value="estudio">Estudio</option>
                </select>
             </div>
           </form>
@@ -50,7 +48,7 @@
        <div class="nav-wrapper">
          <form>
            <div class="input-field">
-             <input id="search" type="search" required>
+             <input id="search" type="search" ng-model="movies.texto" ng-keyup="movies.busqueda()">
              <label for="search"><i class="material-icons">search</i></label>
              <i class="material-icons">close</i>
            </div>
@@ -61,17 +59,16 @@
    <table id="contenedorPeliculas">
    <div>
      <tr>
-     <td><div id="pelicula1" class="zoom"><a href="#openModal"><img src="../images/peliculas/pel1.jpeg"></a></div></td>
-     <td><div id="pelicula2" class="zoom"><a href="#openModal"><img src="../images/peliculas/pel1.jpeg"></a></div></td>
-     <td><div id="pelicula3" class="zoom"><a href="#openModal"><img src="../images/peliculas/pel1.jpeg"></a></div></td>
-     <td><div id="pelicula4" class="zoom"><a href="#openModal"><img src="../images/peliculas/pel1.jpeg"></a></div></td>
+       <td ng-repeat="movie in movies.peliculas">
+            <div class="zoom">
+                <a href="#openModal"
+                ng-click="movies.alquilar(movie.id_pelicula ? movie.id_pelicula : movie[0])">
+                  <img ng-src="{{movie.imagen ? movie.imagen : movie[1]}}"></a>
+            </div>
+       </td>
+
      </tr>
-     <tr>
-       <td><div id="pelicula5" class="zoom"><a href="#openModal"><img src="../images/peliculas/pel1.jpeg"></a></div></td>
-       <td><div id="pelicula6" class="zoom"><a href="#openModal"><img src="../images/peliculas/pel1.jpeg"></a></div></td>
-       <td><div id="pelicula7" class="zoom"><a href="#openModal"><img src="../images/peliculas/pel1.jpeg"></a></div></td>
-       <td><div id="pelicula8" class="zoom"><a href="#openModal"><img src="../images/peliculas/pel1.jpeg"></a></div></td>
-    </tr>
+
    </div>
   </table>
 
@@ -97,9 +94,9 @@
   <div id="openModal2" class="modalDialog">
       <div><a href="#close" title="Close" class="close">X</a>
           <center><h2 id="textoModal">Registro</h2></center>
-          <p>Número de películas a alquilar:<input type="number" name="numero"></p>
-          <p>Fecha de inicio:<input type="date" name="fecha"></p>
-          <p>Fecha de fin:<input type="date" name="fechaFin"></p>
+          <p>Número de películas a alquilar:<input type="number" name="numero" ng-model="movies.numero"></p>
+          <p>Fecha de inicio:<input type="date" name="fecha" ng-model="movies.inicio"></p>
+          <p>Fecha de fin:<input type="date" name="fechaFin" ng-model="movies.fin"></p>
           <center><id="btnRegistrar" class="waves-effect waves-light btn"><i class="material-icons left">cloud</i>Registrar película</a></center>
       </div>
   </div>

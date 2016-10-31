@@ -21,14 +21,14 @@ public class Personaje {
 	public Personaje() {
 	}
 	
-	public Personaje(Long id_director) {
-		this.id_director = id_director;
+	public Personaje(Long id_personaje) {
+		this.id_personaje = id_personaje;
 	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "id_director")
-	private Long id_director;
+	@Column(name = "id_personaje")
+	private Long id_personaje;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_pelicula")
@@ -47,12 +47,12 @@ public class Personaje {
 		this.nombre = nombre;
 	}
 
-	public Long getId_director() {
-		return id_director;
+	public Long getId_personaje() {
+		return id_personaje;
 	}
 
-	public void setId_director(Long id_director) {
-		this.id_director = id_director;
+	public void setId_personaje(Long id_personaje) {
+		this.id_personaje = id_personaje;
 	}
 
 	public Pelicula getPelicula() {
@@ -65,7 +65,7 @@ public class Personaje {
 	
 	@Override
 	public String toString() {
-		return "Personaje [id_director=" + id_director + ", peliculas="
+		return "Personaje [id_director=" + id_personaje + ", peliculas="
 				+ pelicula.getId_pelicula() + "]";
 	}
 	
