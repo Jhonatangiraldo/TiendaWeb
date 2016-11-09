@@ -11,17 +11,28 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.sun.xml.internal.txw2.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
 
 @Entity
 @Table(name = "Director")
+@XmlRootElement
 public class Director {
 	
 	public Director() {
+		/*
+		 * Para hibernate
+		 */
 	}
 	
-	public Director(Long id_director) {
+	public Director(Long id_director, String nombre) {
 		this.id_director = id_director;
+		this.nombre = nombre;
+	}
+
+	public Director(Long iddirector) {
+		this.id_director = iddirector;
 	}
 
 	@Id

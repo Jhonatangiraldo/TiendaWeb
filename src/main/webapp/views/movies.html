@@ -3,7 +3,7 @@
    <head>
      <meta charset="utf-8">
      <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-     <link type="text/css" rel="stylesheet" href="../css/materialize.min.css"  media="screen,projection"/>
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
      <link type="text/css" rel="stylesheet" href="../css/app.css"  media="screen,projection"/>
      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
@@ -19,6 +19,7 @@
    </head>
    <body ng-controller="Movies as movies">
      <center><img src="../images/logo.png"><img src="../images/cinta.png"></center>
+     <a href="devolver.html" id="btnDevolver" class="waves-effect waves-light btn"><i class="material-icons left">cloud</i>Devolver Película</a>
      <br />
      <br />
      <span id="textoMovies" class="white-text">
@@ -43,27 +44,29 @@
         <span id="textoMovies" class="white-text">
           Ingrese el criterio de búsqueda:
         </span>
+
      <div id="buscador" class="row">
      <nav>
        <div class="nav-wrapper">
          <form>
            <div class="input-field">
-             <input id="search" type="search" ng-model="movies.texto" ng-keyup="movies.busqueda()">
+             <input id="search" type="search" ng-model="movies.texto">
              <label for="search"><i class="material-icons">search</i></label>
              <i class="material-icons">close</i>
            </div>
          </form>
        </div>
      </nav>
-   </div>
+   </div><br><br>
+   <a id="btnDevolver"  ng-click="movies.busqueda()" class="waves-effect waves-light btn">Devolver Película</a><br>
    <table id="contenedorPeliculas">
    <div>
      <tr>
        <td ng-repeat="movie in movies.peliculas">
             <div class="zoom">
                 <a href="#openModal"
-                ng-click="movies.alquilar(movie.id_pelicula ? movie.id_pelicula : movie[0])">
-                  <img ng-src="{{movie.imagen ? movie.imagen : movie[1]}}"></a>
+                ng-click="movie.id_pelicula ? movies.detalle(movie.id_pelicula) : movies.detalle(movie[0])">
+                  <img ng-src="{{movie.imagen ? '../Peliculas/'+movie.imagen : movie[1]}}"></a>
             </div>
        </td>
 
@@ -74,19 +77,14 @@
 
   <div id="openModal" class="modalDialog">
       <div><a href="#close" title="Close" class="close">X</a>
-          <center><h1 id="textoModal">Descripción</h1></center>
-          <p>Gamer es una película de 2009 escrita
-            y dirigida por Mark Neveldine y Brian Taylor y protagonizada por Gerard Butler y Michael C. Hall.
-            Estrenada el 4 de septiembre en Estados Unidos y España, la película está basada en los videojuegos
-            de disparos en tercera persona.</p>
-            <p>Protagonistas:
-              Gerard Butler
-              Michael C. Hall
-              Amber Valletta
-              Logan Lerman
-              Terry Crews
-              Ludacris
-              Kyra Sedgwick</p> <!-- Asignar variables con descripción -->
+          		<h2 id="textoModal">Id: {{movies.peliculaAlquilar[0]}}</h2>
+          		<h2 id="textoModal">Costo: {{movies.peliculaAlquilar[1]}}</h2>
+          		<h2 id="textoModal">Nombre: {{movies.peliculaAlquilar[2]}}</h2>
+          		<h2 id="textoModal">Bodega: {{movies.peliculaAlquilar[3]}}</h2>
+          		<h2 id="textoModal">Categoria: {{movies.peliculaAlquilar[4]}}</h2>
+          		<h2 id="textoModal">Director: {{movies.peliculaAlquilar[5]}}</h2>
+          		<h2 id="textoModal">Distribuidor: {{movies.peliculaAlquilar[6]}}</h2>
+          		<h2 id="textoModal">Formato: {{movies.peliculaAlquilar[7]}}</h2>
           <center><a href="#openModal2" id="btnRegistrar" class="waves-effect waves-light btn"><i class="material-icons left">cloud</i>Registrar película</a></center>
       </div>
   </div>
@@ -94,10 +92,13 @@
   <div id="openModal2" class="modalDialog">
       <div><a href="#close" title="Close" class="close">X</a>
           <center><h2 id="textoModal">Registro</h2></center>
-          <p>Número de películas a alquilar:<input type="number" name="numero" ng-model="movies.numero"></p>
-          <p>Fecha de inicio:<input type="date" name="fecha" ng-model="movies.inicio"></p>
-          <p>Fecha de fin:<input type="date" name="fechaFin" ng-model="movies.fin"></p>
-          <center><id="btnRegistrar" class="waves-effect waves-light btn"><i class="material-icons left">cloud</i>Registrar película</a></center>
+          <p>Número de películas a alquilar:<input type="number" name="numero" ng-model="movies.numeroPeliculas"></p>
+          <p>Fecha de inicio:<input type="input" name="fecha" ng-model="movies.fechaInicio"></p>
+          <p>Fecha de fin:<input type="input" name="fechaFin" ng-model="movies.fechaFin"></p>
+          <center><a class="waves-effect waves-light btn" ng-click="movies.guardarReserva(movies.peliculaAlquilar[0])">
+                      <i class="material-icons left">cloud</i>Registrar película</a></center>
+                  </a>
+
       </div>
   </div>
   <footer class="page-footer">

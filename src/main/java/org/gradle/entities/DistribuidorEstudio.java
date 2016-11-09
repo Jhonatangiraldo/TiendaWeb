@@ -11,17 +11,27 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.sun.xml.internal.txw2.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @Table(name = "DistribuidorEstudio")
+@XmlRootElement
 public class DistribuidorEstudio {
 	
 	public DistribuidorEstudio() {
+		/*
+		 *	Para hibernate 
+		 */
 	}
 	
-	public DistribuidorEstudio(Long id_distribuidorEstudio) {
-		this.id_distribuidorEstudio = id_distribuidorEstudio;
+	public DistribuidorEstudio(Long iddistribuidorEstudio, String nombre) {
+		this.id_distribuidorEstudio = iddistribuidorEstudio;
+		this.nombre = nombre;
+	}
+
+	public DistribuidorEstudio(Long iddistribuidorEstudio) {
+		this.id_distribuidorEstudio = iddistribuidorEstudio;
 	}
 
 	@Id

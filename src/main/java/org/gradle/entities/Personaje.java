@@ -9,21 +9,33 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
 import org.codehaus.jackson.annotate.JsonBackReference;
-
-import com.sun.xml.internal.txw2.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @Table(name = "Personaje")
+@XmlRootElement
 public class Personaje {
 	
 	public Personaje() {
+		/*
+		 * Para hibernate
+		 */
 	}
 	
 	public Personaje(Long id_personaje) {
 		this.id_personaje = id_personaje;
 	}
+	
+	public Personaje(Long id_personaje, Pelicula pelicula, String nombre) {
+		super();
+		this.id_personaje = id_personaje;
+		this.pelicula = pelicula;
+		this.nombre = nombre;
+	}
+
+
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -47,6 +59,7 @@ public class Personaje {
 		this.nombre = nombre;
 	}
 
+	@XmlElement
 	public Long getId_personaje() {
 		return id_personaje;
 	}

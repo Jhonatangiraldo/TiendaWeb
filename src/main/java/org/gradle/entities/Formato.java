@@ -10,18 +10,27 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import com.sun.xml.internal.txw2.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @Table(name = "Formato")
+@XmlRootElement
 public class Formato {
 	
 	public Formato() {
+		/*
+		 * Hibernate
+		 */
 	}
-	
-	public Formato(Long id_formato) {
+		
+	public Formato(Long id_formato, String nombre) {
 		this.id_formato = id_formato;
+		this.nombre = nombre;
+	}
+
+	public Formato(Long idformato) {
+		this.id_formato = idformato;
 	}
 
 	@Id

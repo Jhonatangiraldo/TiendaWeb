@@ -61,7 +61,7 @@ public class TestRegistro {
 	      
 	    assertEquals("Este usuario ya se encuentra registrado", driver.switchTo().alert().getText());
 	}
-	
+
 	
 	
 	

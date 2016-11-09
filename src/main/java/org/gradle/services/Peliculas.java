@@ -1,6 +1,7 @@
 package org.gradle.services;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -14,7 +15,6 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import org.gradle.Respuesta;
 import org.gradle.entities.Pelicula;
 
 @Path("/peliculas")
@@ -33,10 +33,10 @@ public class Peliculas {
 		
 		//validacion no hallan mismos usuarios
 		Query query = manager.createQuery("FROM Pelicula");
-		System.out.println(query.getResultList().size());
-		if (query.getResultList().size() < 1 ){
-			return null;
+		if (query.getResultList().isEmpty()){
+			return new ArrayList<>();
 		}else{
+			System.out.println(query.getResultList().size());
 			return query.getResultList();
 		}
 	}

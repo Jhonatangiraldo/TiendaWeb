@@ -1,6 +1,22 @@
 (function() {
   var app = angular.module('TiendaPeliculas', []);
 
+  app.controller('Devolver',['$http', function($http){
+    var devolver = this;
+    devolver.peliculas = "";
+
+    var req = { method: 'POST', url: ' http://localhost:8090/Tienda/rest/reservas/reservas',
+		  	headers: {'Content-Type': undefined }
+		};
+		console.log(req.url);
+		$http(req).then(function(response){
+			console.log(response.data);
+			devolver.peliculas = response.data;
+		});
+
+  }]);
+
+
   app.controller('Login',['$http', function($http){
     var login = this;
     login.usuario = '';
@@ -22,7 +38,7 @@
             $http(req).then(function(response){
               if (response.data.respuesta == "Ok"){
                 alert("Bienvenido");
-                location.href = "http://localhost:8090/Tienda/views/main.html";
+                location.href = "http://localhost:8090/Tienda/views/movies.html";
               }else{
                 alert("Usuario y/o contraseña incorrecto");
               }
@@ -40,13 +56,37 @@
     movies.filtro = 'nombrePelicula';
     movies.texto = '';
     movies.peliculas = '';
-    movies.peliculaAlquilar = '';
-    movies.inicio = '';
-    movies.fin = '';
-    movies.numero = 0;
 
-    movies.alquilar = function(pelicula_id){
-      movies.peliculaAlquilar = pelicula_id;
+    movies.peliculaAlquilar = '';
+
+    movies.fechaInicio = ''; //fecha inicio
+    movies.fechaFin = ''; //fecha inicio
+    movies.numeroPeliculas = 0; //numero de peliculas a alquilar
+
+    movies.guardarReserva = function(id_pelicula){
+	    var req = { method: 'POST', url: 'http://localhost:8090/Tienda/rest/gestion/reservar/'
+	    	+ movies.fechaFin + "/" + movies.fechaInicio + "/" + id_pelicula + "/" + 1 + "/"
+        + movies.peliculaAlquilar[1],
+	    	headers: {'Content-Type': undefined }
+	    };
+	    console.log(req);
+	    $http(req).then(function(response){
+	    	console.log(response.data);
+	    	alert("Reserva efectuada");
+	    	location.href = "http://localhost:8090/Tienda/views/movies.html";
+	    });
+    }
+
+    movies.detalle = function(id_pelicula){
+		    var req = { method: 'POST', url: 'http://localhost:8090/Tienda/rest/gestion/consultaDetalle/'
+		    	+ id_pelicula,
+		    	headers: {'Content-Type': undefined }
+		    };
+		    console.log(req.url);
+		    $http(req).then(function(response){
+		    	console.log(response.data);
+		    	movies.peliculaAlquilar = response.data[0];
+		    });
     }
 
     var req = { method: 'POST', url: 'http://localhost:8090/Tienda/rest/peliculas/peliculas',

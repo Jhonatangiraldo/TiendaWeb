@@ -13,12 +13,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import org.codehaus.jackson.annotate.JsonBackReference;
 import org.codehaus.jackson.annotate.JsonIgnore;
-
-import com.sun.xml.internal.txw2.annotation.XmlElement;
 
 @Entity
 @Table(name = "Pelicula")
@@ -26,24 +25,25 @@ import com.sun.xml.internal.txw2.annotation.XmlElement;
 public class Pelicula {
 	
 	public Pelicula() {
-		// TODO Auto-generated constructor stub
-	}
-	
-	public Pelicula(String nombre) {
-		this.nombre = nombre;
+		/*
+		 * Para hibernate
+		 */
 	}
 
-	public Pelicula(Long id_pelicula, Bodega bodega, Sucursal sucursal, Director director, 
-			Categoria categoria, Formato formato, DistribuidorEstudio distribuidorEstudio) {
-		this.id_pelicula = id_pelicula;
+	public Pelicula(Long idpelicula, Bodega bodega, Sucursal sucursal, Director director, 
+			Categoria categoria, Formato formato, DistribuidorEstudio distribuidorEstudio,
+			String nombre, Long costoHora, String imagen) {
+		this.id_pelicula = idpelicula;
 		this.setBodega(bodega);
 		this.sucursal = sucursal;
 		this.director = director;
 		this.categoria = categoria;
 		this.formato = formato;
 		this.distribuidorEstudio = distribuidorEstudio;
+		this.nombre = nombre;
+		this.costoHora = costoHora;
+		this.imagen = imagen;
 	}
-
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -127,7 +127,7 @@ public class Pelicula {
 		}
 	}
 	
-	public void deletePelicula(Personaje personaje){
+	public void deletePersonaje(Personaje personaje){
 		if (personajes.contains(personaje)){
 			personajes.remove(personaje);
 			personaje.setPelicula(null);

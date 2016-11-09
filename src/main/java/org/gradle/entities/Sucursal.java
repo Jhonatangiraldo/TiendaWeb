@@ -10,11 +10,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
-import com.sun.xml.internal.txw2.annotation.XmlElement;
 
 @Entity
 @Table(name = "Sucursal")
+@XmlRootElement
 public class Sucursal {
 	
 	public Sucursal() {
@@ -56,13 +58,8 @@ public class Sucursal {
 		return peliculas;
 	}
 
-	public void setPeliculas(List<Pelicula> peliculas) {
-		this.peliculas = peliculas;
-	}
-
 	@Override
 	public String toString() {
-		return "Sucursal [id_sucursal=" + id_sucursal + ", peliculas="
-				+ peliculas.size() + "]";
+		return "Sucursal [id_sucursal=" + id_sucursal + " ]";
 	}
 }

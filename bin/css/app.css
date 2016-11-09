@@ -9,12 +9,21 @@ body{
   -o-background-size: cover;
   background-size: cover;
 }
-
+#contenedorPeliculas{
+max-width: 90%!important;
+}
+#cardLoginDevolucion{
+  margin-left: 50%!important;
+  width: 100%!important;
+}
 #fondo1{
   background-color: #ffcccc;
 }
 #selectMain{
   width: 92%;
+}
+#btnDevolver{
+ margin-left: 85px!important;
 }
 #textoLogin{
   font-size: 13px;
@@ -68,7 +77,8 @@ body{
   color: #ee6e73!important;
 }
 #contenedorPeliculas{
-  margin-left: 1%!important;
+  margin-left: 4%!important;
+  max-width: 90%!important;
 }
 .zoom{
 		transition: 0.5s ease;
@@ -84,6 +94,8 @@ body{
 }
 #btnSignUp{
   width: 40%
+}
+#cardLoginDevolucion{
 }
 #botones{
   margin-left: -50%;

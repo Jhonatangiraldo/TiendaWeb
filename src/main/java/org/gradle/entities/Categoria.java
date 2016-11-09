@@ -11,17 +11,27 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.sun.xml.internal.txw2.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @Table(name = "Categoria")
+@XmlRootElement
 public class Categoria {
 	
 	public Categoria() {
+		/*
+		 * Para hibernate
+		 */
 	}
 	
-	public Categoria(Long id_categoria) {
-		this.id_categoria = id_categoria;
+	public Categoria(Long idcategoria, String nombre) {
+		this.id_categoria = idcategoria;
+		this.nombre = nombre;
+	}
+
+	public Categoria(Long idcategoria) {
+		this.id_categoria = idcategoria;
 	}
 
 	@Id

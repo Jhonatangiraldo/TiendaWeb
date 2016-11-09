@@ -1,0 +1,5 @@
+projectKey=tienda
+serverUrl=http://localhost:9000
+dashboardUrl=http://localhost:9000/dashboard/index/tienda
+ceTaskId=AVgtm99wl7aBrMeng39_
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AVgtm99wl7aBrMeng39_

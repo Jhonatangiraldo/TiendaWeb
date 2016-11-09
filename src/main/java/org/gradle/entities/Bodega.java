@@ -11,9 +11,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import com.sun.xml.internal.txw2.annotation.XmlElement;
 
 @Entity
 @Table(name = "Bodega")
@@ -26,8 +26,13 @@ public class Bodega {
 		 */
 	}
 	
-	public Bodega(Long id_bodega) {
-		this.id_bodega = id_bodega;
+	public Bodega(Long idbodega, String nombre) {
+		this.id_bodega = idbodega;
+		this.nombre = nombre;
+	}
+	
+	public Bodega(Long idbodega) {
+		this.id_bodega = idbodega;
 	}
 
 	@Id
@@ -62,10 +67,6 @@ public class Bodega {
 	@XmlElement
 	public List<Pelicula> getPeliculas() {
 		return peliculas;
-	}
-
-	public void setPeliculas(List<Pelicula> peliculas) {
-		this.peliculas = peliculas;
 	}
 
 	public void addPelicula(Pelicula pelicula){
